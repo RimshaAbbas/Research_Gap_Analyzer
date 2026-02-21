@@ -40,22 +40,16 @@ st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lexend:wght@700&display=swap');
 
+    /* Global Desktop Padding */
     [data-testid="stMainBlockContainer"] { padding: 2rem 5rem !important; }
     .main { background-color: #f8faff; font-family: 'Inter', sans-serif; }
 
-    [data-testid="stSidebar"] {
-        border-right: 5px solid #0052cc !important;
-        background-color: #ffffff;
-    }
+    /* Blue Sidebar */
+    [data-testid="stSidebar"] { border-right: 5px solid #0052cc !important; background-color: #ffffff; }
     
-    hr {
-        border: none !important;
-        height: 4px !important;
-        background-color: #0052cc !important;
-        opacity: 1 !important;
-        margin: 2rem 0 !important;
-    }
+    hr { border: none !important; height: 4px !important; background-color: #0052cc !important; opacity: 1 !important; margin: 2rem 0 !important; }
 
+    /* Hero Section - Desktop Default */
     .hero-section {
         background: linear-gradient(135deg, #0052cc 0%, #003366 100%);
         padding: 50px 30px;
@@ -64,7 +58,6 @@ st.markdown("""
         text-align: center;
         margin-bottom: 40px;
     }
-    
     .hero-section h1 { font-family: 'Lexend', sans-serif; font-size: 3.2rem !important; color: white !important; margin: 0; }
 
     .stButton>button {
@@ -83,9 +76,10 @@ st.markdown("""
         border-left: 25px solid #0052cc;
         padding: 30px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        color: black;
     }
 
-    /* 1. INCREASED: 'Source', 'Upload PDF', and 'Paper URL' labels */
+    /* Large Labels for Desktop */
     label[data-testid="stWidgetLabel"] p {
         font-size: 2.2rem !important; 
         font-weight: 700 !important;
@@ -93,15 +87,24 @@ st.markdown("""
         margin-bottom: 10px !important;
     }
 
-    /* 2. INCREASED: Radio options 'File Upload' and 'Remote URL' */
-    [data-testid="stWidgetLabel"] + div div p {
-        font-size: 1.4rem !important;
-        font-weight: 500 !important;
-    }
-
-    /* 3. INCREASED: Tab names ('Document Analysis') */
-    button[data-baseweb="tab"] p {
-        font-size: 1.8rem !important;
+    /* --- MOBILE RESPONSIVENESS (Media Queries) --- */
+    @media (max-width: 768px) {
+        [data-testid="stMainBlockContainer"] { padding: 1rem 1rem !important; }
+        
+        .hero-section { padding: 30px 15px; border-radius: 15px; }
+        .hero-section h1 { font-size: 1.8rem !important; }
+        .hero-section p { font-size: 0.9rem !important; }
+        
+        label[data-testid="stWidgetLabel"] p { font-size: 1.4rem !important; }
+        
+        .report-card { 
+            padding: 15px; 
+            border-left-width: 10px; 
+            border-radius: 15px;
+            font-size: 0.95rem;
+        }
+        
+        button[data-baseweb="tab"] p { font-size: 1rem !important; }
     }
     </style>
     """, unsafe_allow_html=True)
@@ -206,5 +209,6 @@ with tab_scout:
                     for s in sources:
                         st.info(f"**{s['title']}**\n[View Source]({s['url']})")
         else: st.error("Please enter an idea.")
+
 
 st.markdown("<div style='text-align: center; color: #94a3b8; margin-top: 60px; font-size: 0.9rem;'>Vanguard AI@RimshaAbbas</div>", unsafe_allow_html=True)
